@@ -14,15 +14,18 @@
 </head>
 
 <body>
-    <?php include_once 'functions.php'; ?>
+    <?php
+    session_start();
+    include_once 'functions.php';
+    ?>
 
 
     <div class="container d-flex flex-column align-items-center">
-        <h1>Strong Passworld Generator</h1>
+        <h1 class="mt-5">Strong Passworld Generator</h1>
         <h2>Genera una password sicura</h2>
-        <form action="index.php" method="get" class="col-5 d-flex flex-column ">
+        <form action="result.php" method="get" class="col-5 d-flex flex-column ">
             <div class="my-4">
-                <label for="exampleFormControlTextarea1" class="form-label">Lunghezza password</label>
+                <label for="exampleFormControlTextarea1" class="form-label">Lunghezza password:</label>
                 <input type="text" class="form-control" id="exampleFormControlTextarea1" name="length"></textarea>
             </div>
 
@@ -32,7 +35,7 @@
 
         <div class="my-4">
             <h1>
-                <?php echo $passworld ?>
+                <?php echo $password ?>
             </h1>
         </div>
     </div>

@@ -1,13 +1,15 @@
 <?php
+session_start();
+
 
 $pssw_length = '';
-$passworld = '';
+$password = '';
 if (isset($_GET['length'])) {
     $pssw_length = $_GET['length'];
 }
 
 if (isset($pssw_length) && $pssw_length != '') {
-    $passworld = gen_pssw($pssw_length);
+    $_SESSION['password'] = gen_pssw($pssw_length);
 }
 function gen_pssw($length)
 {
