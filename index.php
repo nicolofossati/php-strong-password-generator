@@ -28,13 +28,39 @@
 
     function gen_pssw($length)
     {
+        $extractor = [];
+        $letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+        $letters_upper_case = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+        $symbols = ['@', '+', '-', '/', '*'];
+        $result = '';
 
+        for ($i = 0; $i < $length; $i++) {
+            $extractor[] = rand(0, 3);
+        }
+
+        for ($i = 0; $i < $length; $i++) {
+            switch ($extractor[$i]) {
+                case 0: //letter
+                    $result .= $letters[rand(0, count($letters) - 1)];
+                    break;
+                case 1: //letter upper case
+                    $result .= $letters_upper_case[rand(0, count($letters_upper_case) - 1)];
+                    break;
+                case 2: //symbol
+                    $result .= $symbols[rand(0, count($symbols) - 1)];
+                    break;
+                case 3: //number
+                    $result .= rand(0, 9);
+                    break;
+            }
+        }
+        return $result;
     }
     ?>
 
 
-    <div class="container d-flex justify-content-center">
-        <form action="index.php" method="get" class="col-5 d-flex flex-column justify-content-center">
+    <div class="container d-flex flex-column align-items-center">
+        <form action="index.php" method="get" class="col-5 d-flex flex-column ">
             <div class="my-4">
                 <label for="exampleFormControlTextarea1" class="form-label">Lunghezza password</label>
                 <input type="text" class="form-control" id="exampleFormControlTextarea1" name="length"></textarea>
@@ -43,7 +69,12 @@
             <button type="submit" class="btn btn-primary d-flex justify-content-center">Submit</button>
         </form>
 
-        <?php echo $passworld ?>
+
+        <div class="my-4">
+            <h1>
+                <?php echo $passworld ?>
+            </h1>
+        </div>
     </div>
 
 
